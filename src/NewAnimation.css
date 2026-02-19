@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono&display=swap');
+
+/* ── Root ── */
+.na-root {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: #0a0a1a;
+  overflow-x: hidden;
+  font-family: 'Syne', sans-serif;
+}
+
+/* ── Canvas ── */
+.na-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* ── Scroll container (drives all animations) ── */
+.na-scroll-container {
+  position: relative;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.na-spacer {
+  height: 500vh;
+}
+
+/* ── UI Overlay ── */
+.na-ui-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 8vw;
+}
+
+/* ── Phase text blocks ── */
+.na-phase {
+  position: absolute;
+  opacity: 0;
+  max-width: 420px;
+}
+
+/* Each phase gets a unique position */
+.na-phase-1 {
+  left: 8vw;
+  top: 25%;
+}
+
+.na-phase-2 {
+  right: 8vw;
+  left: auto;
+  top: 20%;
+  text-align: right;
+}
+
+.na-phase-3 {
+  left: 8vw;
+  bottom: 18%;
+  top: auto;
+}
+
+.na-phase-4 {
+  right: 8vw;
+  left: auto;
+  bottom: 22%;
+  top: auto;
+  text-align: right;
+}
+
+.na-phase-5 {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.na-phase-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f76cfe;
+  background: rgba(247, 108, 254, 0.08);
+  border: 1px solid rgba(247, 108, 254, 0.2);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.na-phase h2 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #f0f0f0;
+  line-height: 1.05;
+  margin: 16px 0;
+  letter-spacing: -0.03em;
+}
+
+.na-phase p {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  max-width: 360px;
+}
+
+/* ── Navigation ── */
+.na-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 40px;
+  pointer-events: none;
+}
+
+.na-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  pointer-events: all;
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.na-back:hover {
+  color: #f76cfe;
+}
+
+.na-scroll-hint {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  animation: na-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes na-pulse {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.6; }
+}
+
+/* ── Scrollbar styling ── */
+.na-root::-webkit-scrollbar {
+  width: 4px;
+}
+
+.na-root::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.na-root::-webkit-scrollbar-thumb {
+  background: rgba(247, 108, 254, 0.3);
+  border-radius: 4px;
+}
+
+.na-phase-2 p,
+.na-phase-4 p {
+  margin-left: auto;
+}
+
+.na-phase-5 p {
+  margin: 0 auto;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .na-phase {
+    left: 6vw !important;
+    right: auto !important;
+    text-align: left !important;
+    transform: none !important;
+    max-width: 80vw;
+  }
+
+  .na-phase-1 { top: 25%; }
+  .na-phase-2 { top: 25%; }
+  .na-phase-3 { bottom: 20%; top: auto; }
+  .na-phase-4 { bottom: 20%; top: auto; }
+  .na-phase-5 { top: 40%; }
+
+  .na-phase-2 p,
+  .na-phase-4 p,
+  .na-phase-5 p {
+    margin-left: 0;
+  }
+
+  .na-phase h2 {
+    font-size: 2rem;
+  }
+
+  .na-nav {
+    padding: 16px 20px;
+  }
+}

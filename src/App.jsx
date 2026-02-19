@@ -1,8 +1,16 @@
+import { useState } from 'react'
 import Lottie from 'lottie-react'
 import brainAnimation from './brain-animation.json'
+import NewAnimation from './NewAnimation'
 import './App.css'
 
 function App() {
+  const [showAnimation, setShowAnimation] = useState(false)
+
+  if (showAnimation) {
+    return <NewAnimation onBack={() => setShowAnimation(false)} />
+  }
+
   return (
     <div className="app-layout">
       {/* Chat Sidebar */}
@@ -123,6 +131,14 @@ function App() {
             className="brain"
           />
         </div>
+
+        {/* View Animation Button */}
+        <button className="view-animation-btn" onClick={() => setShowAnimation(true)}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          View 3D Animation
+        </button>
       </main>
     </div>
   )
